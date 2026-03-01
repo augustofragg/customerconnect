@@ -1,0 +1,24 @@
+info:
+  name: Create Customer
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/customers
+  body:
+    type: json
+    data: |-
+      {
+        "fullName":"Jully",
+        "cpf":"2222222222",
+        "email":"jully@hotmail.com",
+        "phoneNumber":"21977774444"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
