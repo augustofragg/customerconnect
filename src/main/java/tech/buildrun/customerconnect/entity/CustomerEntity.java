@@ -1,4 +1,4 @@
-package tech.buildrun.entity;
+package tech.buildrun.customerconnect.entity;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_customer")
+@Table(name="tb_customers")
 public class CustomerEntity {
 
     @Id
