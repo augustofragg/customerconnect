@@ -2,11 +2,9 @@ package tech.buildrun.customerconnect.entity;
 
 import java.time.LocalDateTime;
 
-import jakarta.annotation.Priority;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.core.annotation.Order;
 
 @Entity
 @Table(name="tb_customers")
