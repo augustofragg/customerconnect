@@ -1,0 +1,18 @@
+info:
+  name: Delete Customer
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:8080/customers/9
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -5,7 +5,27 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8080/customers
+  url: http://localhost:8080/customers?pageSize=10
+  params:
+    - name: page
+      value: "0"
+      type: query
+      disabled: true
+    - name: pageSize
+      value: "10"
+      type: query
+    - name: orderBy
+      value: asc
+      type: query
+      disabled: true
+    - name: email
+      value: aufragg@gmail.com
+      type: query
+      disabled: true
+    - name: cpf
+      value: "11111111111"
+      type: query
+      disabled: true
   auth: inherit
 
 settings:

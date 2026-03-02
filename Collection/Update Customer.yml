@@ -1,0 +1,23 @@
+info:
+  name: Update Customer
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: http://localhost:8080/customers/3
+  body:
+    type: json
+    data: |-
+      {
+        "name":"Luna",
+        "email":"Luna@hotmail.com",
+        "phoneNumber":"21988885555"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

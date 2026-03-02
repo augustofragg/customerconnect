@@ -4,9 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import tech.buildrun.customerconnect.controller.dto.CustomerDto;
-import tech.buildrun.customerconnect.controller.dto.CustomerUpdate;
+import tech.buildrun.customerconnect.controller.dto.CustomerUpdateDto;
 import tech.buildrun.customerconnect.entity.CustomerEntity;
 import tech.buildrun.customerconnect.repository.CustomerRepository;
 
@@ -23,6 +22,13 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    public Page<CustomerEntity> findAll(Integer page, String orderBy, Integer pageSize, String cpf, String email) {
+
+        PageRequest pageRequest = getPageRequest(page,orderBy,pageSize);
+
+        return findWithFilters(cpf,email,pageRequest);
+    }
+
     public CustomerEntity createCustomer(CustomerDto dto) {
 
         CustomerEntity customer = new CustomerEntity();
@@ -34,7 +40,15 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Optional<CustomerEntity> updateById(Long id,CustomerUpdate dto) {
+    public Optional<CustomerEntity> findById(Long customerId) {
+
+        Optional<CustomerEntity> customer = customerRepository.findById(customerId);
+
+        return customer;
+    }
+
+
+    public Optional<CustomerEntity> updateById(Long id, CustomerUpdateDto dto) {
 
         Optional<CustomerEntity> customer = customerRepository.findById(id);
 
@@ -54,20 +68,14 @@ public class CustomerService {
         return exist;
     }
 
-    public Page<CustomerEntity> listAll(Integer page,String orderBy,Integer pageSize,String cpf, String email) {
 
-        PageRequest pageRequest = getPageRequest(page,orderBy,pageSize);
-
-        return findWithFilters(cpf,email,pageRequest);
-    }
-
-    private static void validateFields(CustomerUpdate dto, Optional<CustomerEntity> customer) {
+    private  void validateFields(CustomerUpdateDto dto, Optional<CustomerEntity> customer) {
         if(hasText(dto.fullName())) {
             customer.get().setFullName(dto.fullName());
         }
 
-        if(hasText(dto.cpf())) {
-            customer.get().setCpf(dto.cpf());
+        if(hasText(dto.phoneNumber())) {
+            customer.get().setPhoneNumber(dto.phoneNumber());
         }
 
         if(hasText(dto.email())) {
@@ -88,6 +96,10 @@ public class CustomerService {
 
     private Page<CustomerEntity> findWithFilters(String cpf, String email, PageRequest pageRequest) {
 
+        if(hasText(cpf) && hasText(email)) {
+            return customerRepository.findByCpfAndEmail(cpf,email,pageRequest);
+        }
+
         if(hasText(cpf)) {
             return customerRepository.findByCpf(cpf,pageRequest);
         }
@@ -96,4 +108,6 @@ public class CustomerService {
         }
         return customerRepository.findAll(pageRequest);
     }
+
+
 }
