@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.buildrun.customerconnect.Service.CustomerService;
+import tech.buildrun.customerconnect.service.CustomerService;
 import tech.buildrun.customerconnect.controller.dto.ApiResponse;
 import tech.buildrun.customerconnect.controller.dto.CustomerDto;
 import tech.buildrun.customerconnect.controller.dto.CustomerUpdateDto;

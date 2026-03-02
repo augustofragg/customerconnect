@@ -1,4 +1,4 @@
-package tech.buildrun.customerconnect.Service;
+package tech.buildrun.customerconnect.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
